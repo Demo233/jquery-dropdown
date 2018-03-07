@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Dropdown.js - a lightweight dropdown of jQuery plugins </title>
+  <!-- <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css"> -->
+  <script type="text/javascript" src="./mock.js"></script>
+  <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+  <link rel="stylesheet" type="text/css" href="./jquery.dropdown.min.css">
+  <script src="./jquery.dropdown.min.js"></script>
+  <style>
+    body {
+      width: 80%;
+      margin: 0 auto;
+      padding-bottom: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="">
+    <div class="row">
+          <div class="col-sm-4">
+              <div class="text-info">单选模式，Option渲染</div><br>
+              <div class="dropdown-sin-1">
+                <select style="display:none" placeholder="请选择：测试placeholder">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+              </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="text-info">100 条数据搜索测试</div><br>
+              <div class="dropdown-sin-2" readOnly="true">
+                <select style="display:none" multiple placeholder="请选择：测试placeholder"></select>
+              </div>
+            </div>
+          </div>
+    </div>
+    <input type="button" onclick="test();" value="点我">
+    <input type="button" onclick="test1();" value="点我1">
+  </form>
+  <script>
+    var Random = Mock.Random;
+     var json2 = Mock.mock({
+      "data|100-200": [{
+        name: function () {
+          return Random.name(true)
+        },
+        "id|+1": 1,
+        "disabled": false,
+        groupName: '分组名',
+        "groupId|1-4": 1,
+        "selected": false
+      }]
+    });
+
+    $('.dropdown-sin-1').dropdown({
+      input: '<input type="text" maxLength="20" placeholder="请输入搜索">',
+      choice: function() {
+        console.log(arguments, this);
+      }
+    });
+
+
+    $('.dropdown-sin-2').dropdown({
+      data: json2.data,
+      input: '<input type="text" maxLength="20" placeholder="请输入搜索">',
+      choice: function () {
+        console.log(arguments, this);
+      }
+    });
+
+    function test(){
+    	var x = $('.dropdown-sin-1').data('dropdown');
+
+    }
+
+     function test1(){
+    	var x = $('.dropdown-sin-2').data('dropdown');
+
+    }
+
+
+  </script>
+</body>
+
+</html>
